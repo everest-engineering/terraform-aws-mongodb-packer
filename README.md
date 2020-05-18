@@ -4,6 +4,8 @@ This module is part of a project to simplify the provisioning of MongoDB on AWS 
 
 A terrafrom module to launch the single tier mongo instance on ```AWS```.
 
+![MongoDB on Packer EC2 Instances](images/Mongo-Packer.png)
+
 These types of resources are supported:
 ``` EC2 instance ```
 
