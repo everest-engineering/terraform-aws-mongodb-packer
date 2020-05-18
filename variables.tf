@@ -63,3 +63,36 @@ variable "ami_version" {
   type        = string
   default     = "1.0"
 }
+
+variable "bastion_host" {
+  description = "bastion host"
+  type        = string
+}
+
+variable "private_key" {
+  description = "Private key"
+}
+
+variable "ssh_user" {
+  description = "ssh user"
+  default = "ubuntu"
+}
+
+variable "replica_count" {
+  default = 3
+}
+
+variable "db_admin_user" {
+  default = "admin"
+}
+variable "db_admin_pass" {
+  default = "admin"
+}
+variable "db_replica_set_user" {
+  default = "replicaUser"
+}
+variable "db_replica_set_pass" {
+  default = "replicaPass"
+}
+
+

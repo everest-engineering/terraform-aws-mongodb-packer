@@ -8,11 +8,20 @@ data "aws_ami" "image" {
   }
 }
 
+resource "random_string" "mongo_key" {
+  length  = 512
+  special = false
+}
+
 data "template_file" "user_data" {
   template = file("${path.module}/user-data.sh")
+  vars = {
+    mongo_key = random_string.mongo_key.result
+  }
 }
 
 resource "aws_instance" "mongodb" {
+  count                       = var.replica_count
   ami                         = var.ami == "" ? data.aws_ami.image.id : var.ami
   instance_type               = var.instance_type
   subnet_id                   = var.subnet_id
@@ -23,3 +32,37 @@ resource "aws_instance" "mongodb" {
   user_data                   = data.template_file.user_data.rendered
 }
 
+resource "null_resource" "replicaset_initialization" {
+
+  provisioner "file" {
+    content = templatefile("${path.module}/templates/init-replicaset.js.tmpl", {
+      ip_addrs = aws_instance.mongodb.*.private_ip
+    })
+    destination = "/tmp/init-replicaset.js"
+  }
+
+  provisioner "file" {
+    content = templatefile("${path.module}/templates/admin.js.tmpl", {
+      admin_user   = var.db_admin_user
+      admin_pass   = var.db_admin_pass
+      replica_user = var.db_replica_set_user
+      replica_pass = var.db_replica_set_pass
+    })
+    destination = "/tmp/admin.js"
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "mongo 127.0.0.1:27017/admin /tmp/init-replicaset.js /tmp/admin.js",
+    ]
+  }
+
+  connection {
+    host         = aws_instance.mongodb[0].private_ip
+    type         = "ssh"
+    user         = var.ssh_user
+    private_key  = var.private_key
+    bastion_host = var.bastion_host
+    agent        = true
+  }
+}

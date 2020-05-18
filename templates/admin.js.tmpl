@@ -1,0 +1,20 @@
+admin = db.getSiblingDB("admin")
+admin.grantRolesToUser("admin", [ "root" , { "role": "root", "db": "admin" } ] )
+
+admin.createUser(
+  {
+    user: ${admin_user},
+    pwd: ${admin_pass},
+    roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]
+  }
+)
+
+db.getSiblingDB("admin").auth(${admin_user}, ${admin_pass} )
+
+db.getSiblingDB("admin").createUser(
+  {
+    "user" : ${replica_user},
+    "pwd" : ${replica_pass},
+    roles: [ { "role" : "clusterAdmin", "db" : "admin" } ]
+  }
+)
