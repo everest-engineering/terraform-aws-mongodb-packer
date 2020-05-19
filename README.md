@@ -32,7 +32,7 @@ You can start build your images using this [packer-repo](`https://github.com/eve
 
 ```sh
 module "terraform-mongodb" {
-  source = "git@github.com:srik007/terraform-mongodb.git"
+  source = "git@github.com:everest-engineering/terraform-mongodb-provisioning-packer.git"
   ami = "ami-0091d303b9f45e661"
   instance_type = "t2.micro"
   subnet_id = "subnet-eddcdzz4"
