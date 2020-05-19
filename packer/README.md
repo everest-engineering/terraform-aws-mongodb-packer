@@ -33,7 +33,6 @@ Before you build the image on cloud platforms, you need to setup authentication.
 
 Building custom images on AWS:
 ```sh
-$ cd Packer-AMI
 $ packer build template.json -var region=ap-south-1 -var ami_version=v1.0 -var mongo_version=4.2 -var base_ami=ami-0fd7e4b8e94538bef
 ```
 Once you have done above steps, it will produce the AMI image with below name ```ubuntu-18.04_mongodb-4.2_v1.0 ```
