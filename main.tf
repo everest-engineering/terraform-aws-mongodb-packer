@@ -53,7 +53,10 @@ resource "null_resource" "replicaset_initialization" {
 
   provisioner "remote-exec" {
     inline = [
-      "mongo 127.0.0.1:27017/admin /tmp/init-replicaset.js /tmp/admin.js",
+      "mongo 127.0.0.1:27017/admin /tmp/init-replicaset.js",
+      "sleep 10",
+      "mongo 127.0.0.1:27017/admin /tmp/admin.js",
+
     ]
   }
 
