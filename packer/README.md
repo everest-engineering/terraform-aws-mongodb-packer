@@ -20,6 +20,8 @@ You can pass custom configuration to ``template.json`` before you build the imag
 * `` mongo_version: `` Version of mongo db. ``` Ex: 4.2```
 * `` ami_version: `` Tag the version to custom ami. ```Ex: v1.0```
 
+```Note```: As AMI images are region specific. We should be pick the right vanilla image in provided region.
+
 ### To build image
 
 Before we take this template and build an image from it, let's validate the template by running 
