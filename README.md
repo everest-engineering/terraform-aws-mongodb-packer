@@ -62,7 +62,10 @@ module "terraform-mongodb" {
 | platform                    | Which platform of mongo ami                             | string | ubuntu-18.04 | no       |
 | mongodb_version             | Which version of mongo db                               | string | 4.2          | no       |
 | ami_version                 | Version of ami                                          | string | v1.0         | no       |
-| associate_public_ip_address | If true, the EC2 will have associated public IP address | bool	  | "null"       | no       |
+| replica_count               | Number of nodes for replica set                         | number	| 3            | no       |
+| db_admin_user               | Administrative user for mange mongo db                  | string	| "admin"      | no       |
+| db_admin_pwd                | Administarive user password                             | string	| "admin"      | no       |
+| private_key                 | A private key file to provision instances               | string	| ""           | yes      |
 
 ### Outputs
 
