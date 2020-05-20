@@ -65,7 +65,7 @@ variable "ami_version" {
 }
 
 variable "bastion_host" {
-  description = "bastion host"
+  description = "Bastion host"
   type        = string
 }
 
@@ -79,20 +79,27 @@ variable "ssh_user" {
 }
 
 variable "replica_count" {
+  description = "Number of nodes for replica set"
   default = 3
 }
 
 variable "db_admin_user" {
   default = "admin"
+  description = "A adminstrative user for managing mongo dbs"
 }
+
 variable "db_admin_pass" {
   default = "admin"
+  description = "A adminstrative user password"
 }
+
 variable "db_replica_set_user" {
   default = "replicaUser"
+  description = "Cluster admin user"
 }
+
 variable "db_replica_set_pass" {
-  default = "replicaPass"
+  default = "Cluster admin user password"
 }
 
 

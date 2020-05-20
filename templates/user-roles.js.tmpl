@@ -20,13 +20,3 @@ db.getSiblingDB("admin").createUser(
     roles: [ { "role" : "clusterAdmin", "db" : "admin" } ]
   }
 )
-
-
-db.createUser({
-  user: "myuser",
-  pwd: "myuser",
-  roles: [
-    {role: "readWriteAnyDatabase", db:"admin"},
-    {"role": "dbAdminAnyDatabase", "db": "admin"}
-  ]
-})
