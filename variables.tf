@@ -88,18 +88,10 @@ variable "db_admin_user" {
   description = "A adminstrative user for managing mongo dbs"
 }
 
-variable "db_admin_pass" {
+variable "db_admin_pwd" {
   default = "admin"
   description = "A adminstrative user password"
 }
 
-variable "db_replica_set_user" {
-  default = "replicaUser"
-  description = "Cluster admin user"
-}
-
-variable "db_replica_set_pass" {
-  default = "Cluster admin user password"
-}
 
 

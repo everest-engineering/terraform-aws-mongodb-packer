@@ -32,7 +32,7 @@ resource "aws_instance" "mongodb" {
   user_data                   = data.template_file.user_data.rendered
 }
 
-resource "null_resource" "replicaset_initialization_and_user_roles" {
+resource "null_resource" "replicaset_initialization_and_users" {
 
   provisioner "file" {
     content = templatefile("${path.module}/templates/init-replicaset.js.tmpl", {
@@ -42,20 +42,18 @@ resource "null_resource" "replicaset_initialization_and_user_roles" {
   }
 
   provisioner "file" {
-    content = templatefile("${path.module}/templates/user-roles.js.tmpl", {
+    content = templatefile("${path.module}/templates/admin.js.tmpl", {
       admin_user   = var.db_admin_user
-      admin_pass   = var.db_admin_pass
-      replica_user = var.db_replica_set_user
-      replica_pass = var.db_replica_set_pass
+      admin_pwd   = var.db_admin_pwd
     })
-    destination = "/tmp/user-roles.js"
+    destination = "/tmp/admin.js"
   }
 
   provisioner "remote-exec" {
     inline = [
       "mongo 127.0.0.1:27017/admin /tmp/init-replicaset.js",
       "sleep 30",
-      "mongo 127.0.0.1:27017/admin /tmp/user-roles.js",
+      "mongo 127.0.0.1:27017/admin /tmp/admin.js",
     ]
   }
 
