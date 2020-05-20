@@ -20,6 +20,8 @@ You can pass custom configuration to ``template.json`` before you build the imag
 * `` mongo_version: `` Version of mongo db. ``` Ex: 4.2```
 * `` ami_version: `` Tag the version to custom ami. ```Ex: v1.0```
 
+```Note```: As AMI images are region specific. We should be pick the right vanilla image in provided region.
+
 ### To build image
 
 Before we take this template and build an image from it, let's validate the template by running 
@@ -33,7 +35,6 @@ Before you build the image on cloud platforms, you need to setup authentication.
 
 Building custom images on AWS:
 ```sh
-$ cd Packer-AMI
 $ packer build template.json -var region=ap-south-1 -var ami_version=v1.0 -var mongo_version=4.2 -var base_ami=ami-0fd7e4b8e94538bef
 ```
 Once you have done above steps, it will produce the AMI image with below name ```ubuntu-18.04_mongodb-4.2_v1.0 ```
