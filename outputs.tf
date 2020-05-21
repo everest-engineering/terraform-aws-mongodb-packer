@@ -13,9 +13,9 @@ output "key_name" {
   value       = aws_instance.mongodb.*.key_name
 }
 
-output "public_ip" {
-  description = "List of public IP addresses assigned to the instances, if applicable"
-  value       = aws_instance.mongodb.*.public_ip
+output "private_ip" {
+  description = "List of private IP addresses assigned to the instances, if applicable"
+  value       = aws_instance.mongodb.*.private_ip
 }
 
 output "security_groups" {

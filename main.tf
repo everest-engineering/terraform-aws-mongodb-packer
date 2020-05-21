@@ -27,7 +27,6 @@ resource "aws_instance" "mongodb" {
   subnet_id                   = var.subnet_id
   vpc_security_group_ids      = var.vpc_security_group_ids
   key_name                    = var.key_name
-  associate_public_ip_address = var.associate_public_ip_address
   tags                        = var.tags
   user_data                   = data.template_file.user_data.rendered
 }
@@ -43,8 +42,8 @@ resource "null_resource" "replicaset_initialization_and_users" {
 
   provisioner "file" {
     content = templatefile("${path.module}/templates/admin.js.tmpl", {
-      admin_user   = var.db_admin_user
-      admin_pwd   = var.db_admin_pwd
+      admin_user = var.db_admin_user
+      admin_pwd  = var.db_admin_pwd
     })
     destination = "/tmp/admin.js"
   }

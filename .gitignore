@@ -6,3 +6,4 @@ examples/*.tfstate.*
 *.tfstate
 *.tfstate.*
 terraform.tfvars
+examples/private-key

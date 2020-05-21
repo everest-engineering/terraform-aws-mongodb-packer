@@ -62,29 +62,27 @@ module "terraform-mongodb" {
 | vpc_security_group_ids      | A list of security group IDs to associate with          | list   | "null"       | no       |
 | key_name                    | The key name to use for the instance                    | string | ""           | no       |
 | tags                        | A mapping of tags to assign to the resource             | list   | {}           | no       |
-| platform                    | Which platform of mongo ami                             | string | ubuntu-18.04 | no       |
-| mongodb_version             | Which version of mongo db                               | string | 4.2          | no       |
+| platform                    | Name of the Base vanilla image os                       | string | ubuntu-18.04 | no       |
+| mongodb_version             | Mongodb version                                         | string | 4.2          | no       |
 | ami_version                 | Version of ami                                          | string | v1.0         | no       |
 | replica_count               | Number of nodes for replica set                         | number | 3            | no       |
-| db_admin_user               | Administrative user for mange mongo db                  | string | "admin"      | no       |
+| db_admin_user               | Administrative user for managing mongo db               | string | "admin"      | no       |
 | db_admin_pwd                | Administarive user password                             | string | "admin"      | no       |
 | private_key                 | A private key file to provision instances               | string | ""           | yes      |
-| associate_public_ip_address | If true, the EC2 will have associated public IP address | bool   | "null"       | no       |
-
 
 ### Outputs
 
-| Name                   | Description                                                          |
-| ---------------------- | -------------------------------------------------------------------- |
-| id                     | List of IDs of instances                                             |
-| arn                    | List of ARNs of instances                                            |
-| key_name               | List of key names of instances                                       |
-| public_ip              | List of public IP addresses assigned to the instances, if applicable |
-| security_groups        | List of associated security groups of instances                      |
-| vpc_security_group_ids | List of associated security groups of instances                      |
-| subnet_id              | List of IDs of VPC subnets of instances                              |
-| tags                   | List of tags of instances                                            |
-| instance_state         | List of instance states of instances                                 |
+| Name                   | Description                                                           |
+| ---------------------- | --------------------------------------------------------------------  |
+| id                     | List of IDs of instances                                              |
+| arn                    | List of ARNs of instances                                             |
+| key_name               | List of key names of instances                                        |
+| private_ip             | List of private IP addresses assigned to the instances, if applicable |
+| security_groups        | List of associated security groups of instances                       |
+| vpc_security_group_ids | List of associated security groups of instances                       |
+| subnet_id              | List of IDs of VPC subnets of instances                               |
+| tags                   | List of tags of instances                                             |
+| instance_state         | List of instance states of instances                                  |
 
 ## Testing
 
@@ -109,7 +107,7 @@ Browse through the
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## Authors
-> Talk to us `hi@everest.engineering`.
 
+> Talk to us `hi@everest.engineering`.
 
 [![License: EverestEngineering](https://img.shields.io/badge/Copyright%20%C2%A9-EVERESTENGINEERING-blue)](https://everest.engineering)
