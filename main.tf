@@ -9,8 +9,7 @@ data "aws_ami" "image" {
 }
 
 resource "random_string" "mongo_key" {
-  length  = 512
-  special = false
+  length = 512
 }
 
 data "template_file" "user_data" {
@@ -21,14 +20,14 @@ data "template_file" "user_data" {
 }
 
 resource "aws_instance" "mongodb" {
-  count                       = var.replica_count
-  ami                         = var.ami == "" ? data.aws_ami.image.id : var.ami
-  instance_type               = var.instance_type
-  subnet_id                   = var.subnet_id
-  vpc_security_group_ids      = var.vpc_security_group_ids
-  key_name                    = var.key_name
-  tags                        = var.tags
-  user_data                   = data.template_file.user_data.rendered
+  count                  = var.replica_count
+  ami                    = var.ami == "" ? data.aws_ami.image.id : var.ami
+  instance_type          = var.instance_type
+  subnet_id              = var.subnet_id
+  vpc_security_group_ids = var.vpc_security_group_ids
+  key_name               = var.key_name
+  tags                   = var.tags
+  user_data              = data.template_file.user_data.rendered
 }
 
 resource "null_resource" "replicaset_initialization_and_users" {

@@ -56,5 +56,3 @@ As packer is tool for creating custom images, they don't have any deployment opt
 Refer the below documentation to upload your artifacts to cloud:
 
 ``` https://www.packer.io/docs/templates/post-processors/ ```
-
-

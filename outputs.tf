@@ -18,7 +18,7 @@ output "private_ip" {
   value       = aws_instance.mongodb.*.private_ip
 }
 
-output "security_groups" {
+output "instance_security_groups" {
   description = "List of associated security groups of instances"
   value       = aws_instance.mongodb.*.security_groups
 }
