@@ -67,22 +67,22 @@ module "terraform-mongodb" {
 | ami_version                 | Version of ami                                          | string | v1.0         | no       |
 | replica_count               | Number of nodes for replica set                         | number | 3            | no       |
 | db_admin_user               | Administrative user for managing mongo db               | string | "admin"      | no       |
-| db_admin_pwd                | Administrative user password                             | string | "admin"      | no       |
+| db_admin_pwd                | Administrative user password                            | string | "admin"      | no       |
 | private_key                 | A private key file to provision instances               | string | ""           | yes      |
 
 ### Outputs
 
-| Name                     | Description                                                           |
-| -------------------------| --------------------------------------------------------------------  |
-| id                       | List of IDs of instances                                              |
-| arn                      | List of ARNs of instances                                             |
-| key_name                 | List of key names of instances                                        |
-| private_ip               | List of private IP addresses assigned to the instances, if applicable |
-| instance_security_groups | List of associated security groups of instances                       |
-| vpc_security_group_ids   | List of associated security groups of instances                       |
-| subnet_id                | List of IDs of VPC subnets of instances                               |
-| tags                     | List of tags of instances                                             |
-| instance_state           | List of instance states of instances                                  |
+| Name                                 | Description                                                           |
+| ------------------------------------ | --------------------------------------------------------------------  |
+| instance_id_list                     | List of IDs of instances                                              |
+| instance_arn_list                    | List of ARNs of instances                                             |
+| instance_key_name_list               | List of key names of instances                                        |
+| instance_private_ip_list             | List of private IP addresses assigned to the instances, if applicable |
+| instance_security_group_list         | List of associated security groups of instances                       |
+| instance_vpc_security_group_id_list  | List of associated security groups of instances                       |
+| instance_subnet_id_list              | List of IDs of VPC subnets of instances                               |
+| instance_tags_list                   | List of tags of instances                                             |
+| instance_state_list                  | List of instance states of instances                                  |
 
 ## Testing
 
