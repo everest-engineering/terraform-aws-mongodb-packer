@@ -72,17 +72,17 @@ module "terraform-mongodb" {
 
 ### Outputs
 
-| Name                   | Description                                                           |
-| ---------------------- | --------------------------------------------------------------------  |
-| id                     | List of IDs of instances                                              |
-| arn                    | List of ARNs of instances                                             |
-| key_name               | List of key names of instances                                        |
-| private_ip             | List of private IP addresses assigned to the instances, if applicable |
-| security_groups        | List of associated security groups of instances                       |
-| vpc_security_group_ids | List of associated security groups of instances                       |
-| subnet_id              | List of IDs of VPC subnets of instances                               |
-| tags                   | List of tags of instances                                             |
-| instance_state         | List of instance states of instances                                  |
+| Name                     | Description                                                           |
+| -------------------------| --------------------------------------------------------------------  |
+| id                       | List of IDs of instances                                              |
+| arn                      | List of ARNs of instances                                             |
+| key_name                 | List of key names of instances                                        |
+| private_ip               | List of private IP addresses assigned to the instances, if applicable |
+| instance_security_groups | List of associated security groups of instances                       |
+| vpc_security_group_ids   | List of associated security groups of instances                       |
+| subnet_id                | List of IDs of VPC subnets of instances                               |
+| tags                     | List of tags of instances                                             |
+| instance_state           | List of instance states of instances                                  |
 
 ## Testing
 
