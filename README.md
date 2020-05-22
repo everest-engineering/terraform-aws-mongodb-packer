@@ -2,7 +2,7 @@ This module is part of a project to simplify the provisioning of MongoDB on AWS 
 
 # Terraform module to provision MongoDB using Packer
 
-A terrafrom module to launch the single tier mongo instance on `AWS`.
+A terraform module to launch the single tier mongo instance on `AWS`.
 
 These types of resources are supported:
 `EC2 instance`
@@ -11,11 +11,11 @@ These types of resources are supported:
 
 ### Tech
 
-- [Terrafrom] - Terraform enables you to safely and predictably create, change, and improve infrastructure. It is an open source tool that codifies APIs into declarative .
+- [Terraform] - Terraform enables you to safely and predictably create, change, and improve infrastructure. It is an open source tool that codifies APIs into declarative .
 
 ### Installation
 
-Install terrafrom using below documentation
+Install terraform using below documentation
 
 `https://learn.hashicorp.com/terraform/getting-started/install.html`
 
@@ -24,7 +24,7 @@ Install terrafrom using below documentation
 Before you start using this module, you need create your own mongodb AMI modules.
 `ami id of custom mongodb image`
 
-### To build Mongodb AMI:
+### To building Mongodb AMI:
 
 You can start build your images using this [packer-repo](`https://github.com/everest-engineering/terraform-mongodb-provisioning-packer/tree/master/packer`). You can pass the created AMI id to the this module.
 
@@ -67,7 +67,7 @@ module "terraform-mongodb" {
 | ami_version                 | Version of ami                                          | string | v1.0         | no       |
 | replica_count               | Number of nodes for replica set                         | number | 3            | no       |
 | db_admin_user               | Administrative user for managing mongo db               | string | "admin"      | no       |
-| db_admin_pwd                | Administarive user password                             | string | "admin"      | no       |
+| db_admin_pwd                | Administrative user password                             | string | "admin"      | no       |
 | private_key                 | A private key file to provision instances               | string | ""           | yes      |
 
 ### Outputs
