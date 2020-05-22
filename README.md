@@ -2,7 +2,7 @@ This module is part of a project to simplify the provisioning of MongoDB on AWS 
 
 # Terraform module to provision MongoDB using Packer
 
-A terrafrom module to launch the single tier mongo instance on `AWS`.
+A terraform module to launch the single tier mongo instance on `AWS`.
 
 These types of resources are supported:
 `EC2 instance`
@@ -11,11 +11,11 @@ These types of resources are supported:
 
 ### Tech
 
-- [Terrafrom] - Terraform enables you to safely and predictably create, change, and improve infrastructure. It is an open source tool that codifies APIs into declarative .
+- [Terraform] - Terraform enables you to safely and predictably create, change, and improve infrastructure. It is an open source tool that codifies APIs into declarative .
 
 ### Installation
 
-Install terrafrom using below documentation
+Install terraform using below documentation
 
 `https://learn.hashicorp.com/terraform/getting-started/install.html`
 
@@ -26,7 +26,7 @@ Before you start using this module, you need create your own mongodb AMI modules
 
 ### To build Mongodb AMI:
 
-You can start build your images using this [packer-repo](`https://github.com/everest-engineering/terraform-mongodb-provisioning-packer/tree/master/packer`). You can pass the created AMI id to the this module.
+You can start building your images using this [packer-repo](`https://github.com/everest-engineering/terraform-mongodb-provisioning-packer/tree/master/packer`). You can pass the created AMI id to the this module.
 
 ### Module usage
 
@@ -62,24 +62,27 @@ module "terraform-mongodb" {
 | vpc_security_group_ids      | A list of security group IDs to associate with          | list   | "null"       | no       |
 | key_name                    | The key name to use for the instance                    | string | ""           | no       |
 | tags                        | A mapping of tags to assign to the resource             | list   | {}           | no       |
-| platform                    | Which platform of mongo ami                             | string | ubuntu-18.04 | no       |
-| mongodb_version             | Which version of mongo db                               | string | 4.2          | no       |
+| platform                    | Name of the Base vanilla image os                       | string | ubuntu-18.04 | no       |
+| mongodb_version             | Mongodb version                                         | string | 4.2          | no       |
 | ami_version                 | Version of ami                                          | string | v1.0         | no       |
-| associate_public_ip_address | If true, the EC2 will have associated public IP address | bool   | "null"       | no       |
+| replica_count               | Number of nodes for replica set                         | number | 3            | no       |
+| db_admin_user               | Administrative user for managing mongo db               | string | "admin"      | no       |
+| db_admin_pwd                | Administrative user password                            | string | "admin"      | no       |
+| private_key                 | A private key file to provision instances               | string | ""           | yes      |
 
 ### Outputs
 
-| Name                   | Description                                                          |
-| ---------------------- | -------------------------------------------------------------------- |
-| id                     | List of IDs of instances                                             |
-| arn                    | List of ARNs of instances                                            |
-| key_name               | List of key names of instances                                       |
-| public_ip              | List of public IP addresses assigned to the instances, if applicable |
-| security_groups        | List of associated security groups of instances                      |
-| vpc_security_group_ids | List of associated security groups of instances                      |
-| subnet_id              | List of IDs of VPC subnets of instances                              |
-| tags                   | List of tags of instances                                            |
-| instance_state         | List of instance states of instances                                 |
+| Name                                 | Description                                                           |
+| ------------------------------------ | --------------------------------------------------------------------  |
+| instance_id_list                     | List of IDs of instances                                              |
+| instance_arn_list                    | List of ARNs of instances                                             |
+| instance_key_name_list               | List of key names of instances                                        |
+| instance_private_ip_list             | List of private IP addresses assigned to the instances, if applicable |
+| instance_security_group_list         | List of associated security groups of instances                       |
+| instance_vpc_security_group_id_list  | List of associated security groups of instances                       |
+| instance_subnet_id_list              | List of IDs of VPC subnets of instances                               |
+| instance_tags_list                   | List of tags of instances                                             |
+| instance_state_list                  | List of instance states of instances                                  |
 
 ## Testing
 

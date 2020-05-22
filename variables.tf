@@ -34,12 +34,6 @@ variable "key_name" {
   default     = ""
 }
 
-variable "associate_public_ip_address" {
-  description = "If true, the EC2 instance will have associated public IP address"
-  type        = bool
-  default     = null
-}
-
 variable "tags" {
   description = "A mapping of tags to assign to the resource"
   type        = map(string)
@@ -62,4 +56,33 @@ variable "ami_version" {
   description = "version of ami image"
   type        = string
   default     = "1.0"
+}
+
+variable "bastion_host" {
+  description = "Bastion host"
+  type        = string
+}
+
+variable "private_key" {
+  description = "Private key"
+}
+
+variable "ssh_user" {
+  description = "ssh user"
+  default     = "ubuntu"
+}
+
+variable "replica_count" {
+  description = "Number of nodes for replica set"
+  default     = 3
+}
+
+variable "db_admin_user" {
+  default     = "admin"
+  description = "An adminstrative user for managing mongo dbs"
+}
+
+variable "db_admin_pwd" {
+  default     = "admin"
+  description = "An adminstrative user password"
 }
