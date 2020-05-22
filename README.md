@@ -24,9 +24,9 @@ Install terraform using below documentation
 Before you start using this module, you need create your own mongodb AMI modules.
 `ami id of custom mongodb image`
 
-### To building Mongodb AMI:
+### To build Mongodb AMI:
 
-You can start build your images using this [packer-repo](`https://github.com/everest-engineering/terraform-mongodb-provisioning-packer/tree/master/packer`). You can pass the created AMI id to the this module.
+You can start building your images using this [packer-repo](`https://github.com/everest-engineering/terraform-mongodb-provisioning-packer/tree/master/packer`). You can pass the created AMI id to the this module.
 
 ### Module usage
 
