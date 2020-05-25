@@ -28,7 +28,7 @@ resource "aws_instance" "vm" {
 module "terraform-mongodb" {
   source                      = "../"
   instance_type               = "t2.micro"
-  ami                         = "ami-0d28c2efc40526b16"
+  ami                         = "ami-02e060634b7f89f92"
   subnet_id                   = module.bastion_network.bastion_private_subnet_id
   vpc_security_group_ids      = [module.bastion_network.bastion_private_sg_id]
   key_name                    = "deployer-key1"
@@ -41,15 +41,15 @@ module "terraform-mongodb" {
   replica_count = 3
   data_volumes = [
     {
-      ebs_volume_id : "vol-045cac05db3bda23a",
+      ebs_volume_id : "vol-0a3849a2189abc7dc",
       availability_zone : "ap-south-1a"
     },
     {
-      ebs_volume_id : "vol-0716a052bf19da392",
+      ebs_volume_id : "vol-0abeae25b3671ba1e",
       availability_zone : "ap-south-1a"
     },
     {
-      ebs_volume_id : "vol-0b037bd2677c79ca7",
+      ebs_volume_id : "vol-0fea7e48c1c26024b",
       availability_zone : "ap-south-1a"
     },
   ]
