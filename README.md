@@ -74,7 +74,6 @@ variable "data_volumes" {
 | Name                        | Description                                             | Type   | Default      | Required |
 | --------------------------- | ------------------------------------------------------- | ------ | ------------ | -------- |
 | ami                         | ID of AMI to use for the instance                       | string | n/a          | yes      |
-| ami_name                    | Name of the AMI, applicable only in case of no AMI id   | string | n/a          | No       |
 | instance_type               | The type of instance to start                           | string | n/a          | yes      |
 | subnet_id                   | The VPC Subnet ID to launch in                          | string | ""           | yes      |
 | vpc_security_group_ids      | A list of security group IDs to associate with          | list   | "null"       | yes      |

@@ -1,14 +1,3 @@
-data "aws_ami" "image" {
-  most_recent = true
-  owners      = ["self"]
-  count       = var.ami == "" ? 1 : 0
-
-  filter {
-    name   = "name"
-    values = [var.ami_name]
-  }
-}
-
 resource "random_string" "mongo_key" {
   length = 512
   special = false
@@ -23,7 +12,7 @@ data "template_file" "user_data" {
 
 resource "aws_instance" "mongodb" {
   count                  = var.replica_count
-  ami                    = var.ami == "" ? data.aws_ami.image[count.index].id : var.ami
+  ami                    = var.ami
   instance_type          = var.instance_type
   subnet_id              = var.subnet_id
   vpc_security_group_ids = var.vpc_security_group_ids
