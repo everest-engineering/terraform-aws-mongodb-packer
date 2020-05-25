@@ -34,12 +34,6 @@ variable "tags" {
   default     = {}
 }
 
-variable "ami_name" {
-  description = "Ami name of the base image"
-  type        = string
-  default     = ""
-}
-
 variable "bastion_host" {
   description = "Bastion host"
   type        = string
@@ -76,5 +70,3 @@ variable "data_volumes" {
   }))
   description = "List of EBS volumes"
 }
-
-

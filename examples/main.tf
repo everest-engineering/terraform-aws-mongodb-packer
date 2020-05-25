@@ -41,15 +41,15 @@ module "terraform-mongodb" {
   replica_count = 3
   data_volumes = [
     {
-      ebs_volume_id : "vol-01611aeb694ddfb8e",
+      ebs_volume_id : "vol-06e46c052984d4203",
       availability_zone : "ap-south-1a"
     },
     {
-      ebs_volume_id : "vol-0427824e0e021d136",
+      ebs_volume_id : "vol-095f37206bbc7c9ab",
       availability_zone : "ap-south-1a"
     },
     {
-      ebs_volume_id : "vol-0836249b2c6befef4",
+      ebs_volume_id : "vol-0af838864df6eeb14",
       availability_zone : "ap-south-1a"
     },
   ]

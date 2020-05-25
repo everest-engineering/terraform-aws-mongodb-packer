@@ -8,7 +8,3 @@ sudo mount /dev/xvdf /mnt
 sudo echo '/dev/xvdf /mnt/db ext4 defaults 0 0' | sudo tee -a /etc/fstab
 sudo mkdir -p /mnt/db
 sudo chown -R mongodb /mnt/db
-
-
-
-
