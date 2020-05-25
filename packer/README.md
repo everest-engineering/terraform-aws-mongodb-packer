@@ -15,10 +15,10 @@ Install packer using below documentation
 
 You can pass custom configuration to ``template.json`` before you build the image.
 
-* `` base_ami: `` Base ami id on which it will provision the mongo db. ```Ex: ami-0fd7e4b8e94538bef```
+* `` base_ami_id: `` Base ami id on which it will provision the mongo db. ```Ex: ami-0fd7e4b8e94538bef```
 * `` region: ``  In which region to upload this custom image. ```Ex: ap-south-1```
 * `` mongo_version: `` Version of mongo db. ``` Ex: 4.2```
-* `` ami_version: `` Tag the version to custom ami. ```Ex: v1.0```
+* `` ami_name: `` Name of the newly created mongo AMI. ```Ex: mongodb_terraform```
 
 ```Note```: As AMI images are region specific. We should be pick the right vanilla image in provided region.
 
@@ -35,7 +35,7 @@ Before you build the image on cloud platforms, you need to setup authentication.
 
 Building custom images on AWS:
 ```sh
-$ packer build template.json -var region=ap-south-1 -var ami_version=v1.0 -var mongo_version=4.2 -var base_ami=ami-0fd7e4b8e94538bef
+$ packer build template.json -var region=ap-south-1 -var ami_name=terraform-mongo-ami -var mongo_version=4.2 -var base_ami_id=ami-0fd7e4b8e94538bef
 ```
 Once you have done above steps, it will produce the AMI image with below name ```ubuntu-18.04_mongodb-4.2_v1.0 ```
 

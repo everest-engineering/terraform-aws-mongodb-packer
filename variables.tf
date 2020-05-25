@@ -40,22 +40,10 @@ variable "tags" {
   default     = {}
 }
 
-variable "platform" {
-  description = "A base image for EC2 mongo instance"
+variable "ami_name" {
+  description = "Ami name of the base image"
   type        = string
-  default     = "ubuntu-18.04"
-}
-
-variable "mongodb_version" {
-  description = "Mongo version for base image"
-  type        = string
-  default     = "4.2"
-}
-
-variable "ami_version" {
-  description = "version of ami image"
-  type        = string
-  default     = "1.0"
+  default     = ""
 }
 
 variable "bastion_host" {
@@ -86,3 +74,13 @@ variable "db_admin_pwd" {
   default     = "admin"
   description = "An adminstrative user password"
 }
+
+variable "data_volumes" {
+  type = list(object({
+    ebs_volume_id     = string
+    availability_zone = string
+  }))
+  description = "List of EBS volumes"
+}
+
+

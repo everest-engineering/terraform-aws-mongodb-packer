@@ -28,15 +28,29 @@ resource "aws_instance" "vm" {
 module "terraform-mongodb" {
   source                      = "../"
   instance_type               = "t2.micro"
-  ami                         = "ami-068f6a7f54825f937"
+  ami                         = "ami-0d28c2efc40526b16"
   subnet_id                   = module.bastion_network.bastion_private_subnet_id
   vpc_security_group_ids      = [module.bastion_network.bastion_private_sg_id]
   key_name                    = "deployer-key1"
   tags = {
     Name = "Packer mongo example"
   }
-  bastion_host = aws_instance.vm.public_ip
-  private_key = file("${path.module}/private-key")
+  bastion_host  = aws_instance.vm.public_ip
+  private_key   = file("${path.module}/private-key")
   replica_count = 3
+  data_volumes = [
+    {
+      ebs_volume_id : "vol-045cac05db3bda23a",
+      availability_zone : "ap-south-1a"
+    },
+    {
+      ebs_volume_id : "vol-0716a052bf19da392",
+      availability_zone : "ap-south-1a"
+    },
+    {
+      ebs_volume_id : "vol-0b037bd2677c79ca7",
+      availability_zone : "ap-south-1a"
+    },
+  ]
 }
 

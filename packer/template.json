@@ -1,18 +1,12 @@
 {
-  "variables": {
-    "region": "ap-south-1",
-    "base_ami": "ami-0fd7e4b8e94538bef",
-    "mongo_version": "4.2",
-    "version": "v2.1"
-  },
-  "builders": [
+ "builders": [
     {
       "access_key": "{{user `aws_access_key`}}",
-      "ami_name": "ubuntu-18.04_mongodb-{{user `mongo_version`}}_{{user `version`}}",
+      "ami_name": "{{ user `ami_name`}}",
       "instance_type": "t3.micro",
       "region": "{{user `region`}}",
       "secret_key": "{{user `aws_secret_key`}}",
-      "source_ami": "{{user `base_ami`}}",
+      "source_ami": "{{user `base_ami_id`}}",
       "ssh_username": "ubuntu",
       "tags": {
         "OS_Version": "Ubuntu"
@@ -29,6 +23,11 @@
       "type": "file",
       "source": "./scripts/conf/mongod.conf",
       "destination": "/tmp/mongod.conf"
+    },
+    {
+      "type": "file",
+      "source": "./scripts/mount-ebs-volumes.sh",
+      "destination": "/tmp/mount-ebs-volumes.sh"
     },
     {
       "type": "shell",
