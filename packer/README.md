@@ -1,6 +1,6 @@
 # Packer AMI
 
-Building the custom AMI images for mongodb on ubuntu platforms.
+Module for building the custom AMI images for mongodb on ubuntu platforms.
 
 ### Tech
 * [Packer] - Packer is a free and open source tool for creating golden images for multiple platforms from a single source configuration.
