@@ -2,7 +2,7 @@ This module is part of a project to simplify the provisioning of MongoDB on AWS 
 
 # Terraform module to provision MongoDB replica set using Packer
 
-A terraform module to provision the mongodb replica set on `AWS`.
+A terraform module to provision N-node mongodb replica set on `AWS`.
 
 These types of resources are supported:
 `EC2 instance`
@@ -23,7 +23,7 @@ Install terraform using below documentation
 
 Before you start using this module
 1. You need create mongodb AMI using [packer module](https://github.com/everest-engineering/terraform-mongodb-provisioning-packer/tree/master/packer). Provide the created AMI id for this module.
-2. You need to provide the list of ebs volumes and their corresponding availability zones.
+2. You need to provide the list of ebs volumes and their corresponding availability zones. Number of ebs volumes should be same as replica count.
 
 ### Provision N-node mongo replica set in private subnet.
 
