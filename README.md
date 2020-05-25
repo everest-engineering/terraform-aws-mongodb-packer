@@ -40,6 +40,7 @@ module "terraform-mongodb" {
   key_name                   = "deployer-key1"
   private_key                = file("${path.module}/private-key")
   bastion_host               = "13.233.49.29"
+  ssh_user                   = "ubuntu"
   tags ={
     Name = "New packer mongo"
   }
@@ -84,6 +85,8 @@ variable "data_volumes" {
 | db_admin_pwd                | Administrative user password                            | string | "admin"      | no       |
 | private_key                 | A private key file to provision instances               | string | ""           | yes      |
 | bastion_host                | A bastion host ip to connect private instances          | string | ""           | yes      |
+| ssh_user                    | SSH user name                                           | string
+| n/a          | yes      |
 
 ### Outputs
 

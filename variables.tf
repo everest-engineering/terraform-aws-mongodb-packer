@@ -1,9 +1,3 @@
-variable "instance_count" {
-  description = "Number of instances to launch"
-  type        = number
-  default     = 1
-}
-
 variable "instance_type" {
   description = "EC2 instance type"
   type        = string

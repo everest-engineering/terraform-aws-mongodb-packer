@@ -7,6 +7,4 @@ sudo chown mongodb:mongodb /var/lib/mongodb/keyfile
 sudo systemctl daemon-reload
 sudo systemctl start mongod	
 sudo systemctl enable mongod.service
-
-#user data completion signal
 sudo touch /tmp/signal

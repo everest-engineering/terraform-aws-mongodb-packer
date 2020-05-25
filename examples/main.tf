@@ -32,6 +32,7 @@ module "terraform-mongodb" {
   subnet_id                   = module.bastion_network.bastion_private_subnet_id
   vpc_security_group_ids      = [module.bastion_network.bastion_private_sg_id]
   key_name                    = "deployer-key1"
+  ssh_user                    = "ubuntu"
   tags = {
     Name = "Packer mongo example"
   }
