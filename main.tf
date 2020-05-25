@@ -51,7 +51,7 @@ resource "null_resource" "replicaset_initialization_and_users" {
     inline = [
       "while [ ! -f /tmp/signal ]; do sleep 2; done",
       "mongo 127.0.0.1:27017/admin /tmp/init-replicaset.js",
-      "sleep 30",
+      "sleep 40",
       "mongo 127.0.0.1:27017/admin /tmp/admin.js",
     ]
   }
