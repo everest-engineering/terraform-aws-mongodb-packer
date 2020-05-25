@@ -2,7 +2,7 @@ This module is part of a project to simplify the provisioning of MongoDB on AWS 
 
 # Terraform module to provision MongoDB using Packer
 
-A terraform module to launch the single tier mongo instance on `AWS`.
+A terraform module to deploy the mongodb replica set on `AWS`.
 
 These types of resources are supported:
 `EC2 instance`
@@ -21,54 +21,68 @@ Install terraform using below documentation
 
 ### Dependencies
 
-Before you start using this module, you need create your own mongodb AMI modules.
-`ami id of custom mongodb image`
+Before you start using this module
+1. You need create mongodb AMI using [packer module](`https://github.com/everest-engineering/terraform-mongodb-provisioning-packer/tree/master/packer`). Provide the created AMI id for this module.
+2. You need to provide the list of ebs volumes and their corresponding availability zones.
 
-### To build Mongodb AMI:
+### Provision N-node mongo replica set in private subnet.
 
-You can start building your images using this [packer-repo](`https://github.com/everest-engineering/terraform-mongodb-provisioning-packer/tree/master/packer`). You can pass the created AMI id to the this module.
+You need to configure bastion host and pass the bastion host ip to this module to deploy the N-node replica set on the private instances.
 
-### Module usage
-
-```sh
+```hcl-terraform
 module "terraform-mongodb" {
-  source = "git@github.com:everest-engineering/terraform-mongodb-provisioning-packer.git"
-  ami = "ami-0091d303b9f45e661"
-  instance_type = "t2.micro"
-  subnet_id = "subnet-eddcdzz4"
-  vpc_security_group_ids=["sg-12345678"]
-  key_name="deployer-key1"
-  platform="ubuntu-18.04"
-  mongodb_version="4.2"
-  ami_version="1.0"
-  tags = {
+  source                     = "git@github.com:everest-engineering/terraform-mongodb-provisioning-packer.git"
+  replica_count              = 3
+  ami                        = "ami-0091d303b9f45e661"
+  instance_type              = "t2.micro"
+  subnet_id                  = "subnet-eddcdzz4"
+  vpc_security_group_ids.    = ["sg-12345678"]
+  key_name                   = "deployer-key1"
+  private_key                = file("${path.module}/private-key")
+  bastion_host               = "13.233.49.29"
+  tags ={
     Name = "New packer mongo"
   }
+ data_volumes              = var.data_volumes
+}
+
+variable "data_volumes" {
+  type                = list(object({
+    ebs_volume_id     = string
+    availability_zone = string
+  }))
+  description         = "EBS volumes list"
+  default             = []
 }
 ```
+* Note: When you destroy the infrastrucre using `terraform destory`, it will destroy all the resources except external EBS volumes you provided.
 
 ### Examples
 
 [Terraform-mongodb-example](examples)
+
+
+### Replica set upgradation
+
+Currently this module is not supporting the upgradation of replica set. Refer this [document](https://docs.mongodb.com/manual/release-notes/4.0-upgrade-replica-set/) for manual upgradation.
+
 
 ### Inputs
 
 | Name                        | Description                                             | Type   | Default      | Required |
 | --------------------------- | ------------------------------------------------------- | ------ | ------------ | -------- |
 | ami                         | ID of AMI to use for the instance                       | string | n/a          | yes      |
-| instance_count              | Number of instances to launch                           | number | "1"          | no       |
+| ami_name                    | Name of the AMI, applicable only in case of no AMI id   | string | n/a          | No       |
 | instance_type               | The type of instance to start                           | string | n/a          | yes      |
-| subnet_id                   | The VPC Subnet ID to launch in                          | string | ""           | no       |
-| vpc_security_group_ids      | A list of security group IDs to associate with          | list   | "null"       | no       |
-| key_name                    | The key name to use for the instance                    | string | ""           | no       |
+| subnet_id                   | The VPC Subnet ID to launch in                          | string | ""           | yes      |
+| vpc_security_group_ids      | A list of security group IDs to associate with          | list   | "null"       | yes      |
+| key_name                    | The key name to use for the instance                    | string | ""           | yes      |
 | tags                        | A mapping of tags to assign to the resource             | list   | {}           | no       |
-| platform                    | Name of the Base vanilla image os                       | string | ubuntu-18.04 | no       |
-| mongodb_version             | Mongodb version                                         | string | 4.2          | no       |
-| ami_version                 | Version of ami                                          | string | v1.0         | no       |
-| replica_count               | Number of nodes for replica set                         | number | 3            | no       |
+| replica_count               | Number of nodes for replica set                         | number | 3            | yes      |
 | db_admin_user               | Administrative user for managing mongo db               | string | "admin"      | no       |
 | db_admin_pwd                | Administrative user password                            | string | "admin"      | no       |
 | private_key                 | A private key file to provision instances               | string | ""           | yes      |
+| bastion_host                | A bastion host ip to connect private instances          | string | ""           | yes      |
 
 ### Outputs
 
@@ -83,6 +97,8 @@ module "terraform-mongodb" {
 | instance_subnet_id_list              | List of IDs of VPC subnets of instances                               |
 | instance_tags_list                   | List of tags of instances                                             |
 | instance_state_list                  | List of instance states of instances                                  |
+
+
 
 ## Testing
 
