@@ -1,8 +1,8 @@
 This module is part of a project to simplify the provisioning of MongoDB on AWS cloud using Terraform. You may also wish to consider [one of the other approaches](https://github.com/everest-engineering/terraform-mongodb-provisioning).
 
-# Terraform module to provision MongoDB using Packer
+# Terraform module to provision MongoDB replica set using Packer
 
-A terraform module to deploy the mongodb replica set on `AWS`.
+A terraform module to provision the mongodb replica set on `AWS`.
 
 These types of resources are supported:
 `EC2 instance`
@@ -22,7 +22,7 @@ Install terraform using below documentation
 ### Dependencies
 
 Before you start using this module
-1. You need create mongodb AMI using [packer module](`https://github.com/everest-engineering/terraform-mongodb-provisioning-packer/tree/master/packer`). Provide the created AMI id for this module.
+1. You need create mongodb AMI using [packer module](https://github.com/everest-engineering/terraform-mongodb-provisioning-packer/tree/master/packer). Provide the created AMI id for this module.
 2. You need to provide the list of ebs volumes and their corresponding availability zones.
 
 ### Provision N-node mongo replica set in private subnet.
@@ -36,7 +36,7 @@ module "terraform-mongodb" {
   ami                        = "ami-0091d303b9f45e661"
   instance_type              = "t2.micro"
   subnet_id                  = "subnet-eddcdzz4"
-  vpc_security_group_ids.    = ["sg-12345678"]
+  vpc_security_group_ids     = ["sg-12345678"]
   key_name                   = "deployer-key1"
   private_key                = file("${path.module}/private-key")
   bastion_host               = "13.233.49.29"
@@ -55,7 +55,7 @@ variable "data_volumes" {
   default             = []
 }
 ```
-* Note: When you destroy the infrastrucre using `terraform destory`, it will destroy all the resources except external EBS volumes you provided.
+* `Note`: When you destroy the infrastrucre using `terraform destory`, it will destroy all the resources except external EBS volumes you provided.
 
 ### Examples
 
