@@ -64,7 +64,8 @@ variable "data_volumes" {
 
 ### Replica set upgradation
 
-Currently this module is not supporting the upgradation of replica set. Refer this [document](https://docs.mongodb.com/manual/release-notes/4.0-upgrade-replica-set/) for manual upgradation.
+1. Currently this module is not supporting the upgradation of replica set. Refer this [document](https://docs.mongodb.com/manual/release-notes/4.0-upgrade-replica-set/) for manual upgradation
+2. Adding new nodes to existing replica set is also not supported. You should destroy the existing infrastructure and create the new one.
 
 
 ### Inputs
