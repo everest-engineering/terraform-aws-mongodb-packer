@@ -85,6 +85,7 @@ variable "data_volumes" {
 | private_key                 | A private key file to provision instances               | string | ""           | yes      |
 | bastion_host                | A bastion host ip to connect private instances          | string | ""           | yes      |
 | ssh_user                    | SSH user name                                           | string | n/a          | yes      |
+| data_volumes	              | EBS volume ids with availability zones                  | list   | n/a	        | yes      |
 
 ### Outputs
 
