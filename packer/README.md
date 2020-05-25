@@ -13,9 +13,9 @@ Install packer using below documentation
 
 ## Supported Plaforms and Mongo version
 
-To build custom AMI images, we need underlying vanilla base image to provison mongodb and the specific version of mongodb.
+To build custom AMI images, we need vanilla base image for packer to provision the mongo. And also the version of mongodb.
 
-Currently `Ubuntu 18.04` and `Ubuntu 16.04` platforms of type `EBS-backed` are supported to be as underlying base image.
+Currently `Ubuntu 18.04` and `Ubuntu 16.04` platforms of type `EBS-backed` are supported to be as base image.
 
 Only `Mongo 4.2` and `Mongo 4.0` Community versions are supported.
 
@@ -24,13 +24,14 @@ Only `Mongo 4.2` and `Mongo 4.0` Community versions are supported.
 | Ubuntu 18.04  | :heavy_check_mark:| :heavy_check_mark: |
 | Ubuntu 16.04  | :heavy_check_mark:|      :x:           |
 
+Note: `Mongo 4.0 Community` is not supported for `Ubuntu 16.04` platform.
 
 ### Configuration
 
 You should pass custom configuration to ``template.json`` to build the image.
 
 * `` region: ``  Name of the aws region in which it will upload the custom images. And also provided `` base_ami_id`` should be exist in this region. ```Ex: ap-south-1```
-* `` base_ami_id: `` Base ami id on which it will provision the mongo db. ```Ex: ami-0fd7e4b8e94538bef```
+* `` base_ami_id: `` Base ami id on which it will provision the mongo db. Base ami operating system should be either `Ubuntu 18.04` or `Ubuntu 16.04` and instance type should be `EBS`. ```Ex: ami-0fd7e4b8e94538bef```
 * `` mongo_version: `` Specify the version of mongo db. As part of provisiong, it will install the latest stable version of this release.  ``` Ex: 4.2 (Don't give the specific version like 4.2.3)```
 * `` ami_name: `` Name for newly created mongo AMI. ```Ex: terraform-mongo-ami```
 
