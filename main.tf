@@ -1,5 +1,5 @@
 resource "random_string" "mongo_key" {
-  length = 512
+  length  = 512
   special = false
 }
 
