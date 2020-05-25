@@ -84,8 +84,7 @@ variable "data_volumes" {
 | db_admin_pwd                | Administrative user password                            | string | "admin"      | no       |
 | private_key                 | A private key file to provision instances               | string | ""           | yes      |
 | bastion_host                | A bastion host ip to connect private instances          | string | ""           | yes      |
-| ssh_user                    | SSH user name                                           | string
-| n/a          | yes      |
+| ssh_user                    | SSH user name                                           | string | n/a          | yes      |
 
 ### Outputs
 
