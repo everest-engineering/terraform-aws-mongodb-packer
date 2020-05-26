@@ -50,6 +50,7 @@ resource "null_resource" "replicaset_initialization_and_users" {
   provisioner "remote-exec" {
     inline = [
       "while [ ! -f /tmp/signal ]; do sleep 2; done",
+      "sleep 20",
       "mongo 127.0.0.1:27017/admin /tmp/init-replicaset.js",
       "sleep 40",
       "mongo 127.0.0.1:27017/admin /tmp/admin.js",
