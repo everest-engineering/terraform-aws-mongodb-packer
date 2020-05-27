@@ -1,4 +1,4 @@
-This module is part of a project to simplify the provisioning of MongoDB on AWS cloud using Terraform. You may also wish to consider [one of the other approaches](https://github.com/everest-engineering/terraform-mongodb-provisioning).
+This module is part of a project to simplify the provisioning of MongoDB on AWS cloud using Terraform. You may also wish to consider [one of the other approaches](https://github.com/everest-engineering/terraform-aws-mongodb).
 
 # Terraform module to provision MongoDB using Packer
 
@@ -26,13 +26,13 @@ Before you start using this module, you need create your own mongodb AMI modules
 
 ### To build Mongodb AMI:
 
-You can start building your images using this [packer-repo](`https://github.com/everest-engineering/terraform-mongodb-provisioning-packer/tree/master/packer`). You can pass the created AMI id to the this module.
+You can start building your images using this [packer-repo](`https://github.com/everest-engineering/terraform-aws-mongodb-packer/tree/master/packer`). You can pass the created AMI id to the this module.
 
 ### Module usage
 
 ```sh
 module "terraform-mongodb" {
-  source = "git@github.com:everest-engineering/terraform-mongodb-provisioning-packer.git"
+  source = "git@github.com:everest-engineering/terraform-aws-mongodb-packer.git"
   ami = "ami-0091d303b9f45e661"
   instance_type = "t2.micro"
   subnet_id = "subnet-eddcdzz4"
@@ -98,9 +98,9 @@ module "terraform-mongodb" {
 
 We appreciate your help!
 
-[Open an issue](https://github.com/everest-engineering/terraform-mongodb-provisioning-packer/issues/new) or submit a pull request for an enhancement.
+[Open an issue](https://github.com/everest-engineering/terraform-aws-mongodb-packer/issues/new) or submit a pull request for an enhancement.
 Browse through the
-[current open issues](https://github.com/everest-engineering/terraform-mongodb-provisioning-packer/issues).
+[current open issues](https://github.com/everest-engineering/terraform-aws-mongodb-packer/issues).
 
 ## License
 
