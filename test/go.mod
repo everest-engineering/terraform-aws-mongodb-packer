@@ -1,4 +1,4 @@
-module github.com/everest-engineering/terraform-mongodb-provisioning/mongo-provisioner-packer
+module github.com/everest-engineering/terraform-aws-mongodb/mongo-provisioner-packer
 
 require (
 	github.com/gruntwork-io/terratest v0.27.2
