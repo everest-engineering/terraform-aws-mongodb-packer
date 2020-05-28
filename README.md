@@ -7,7 +7,7 @@ A terraform module to launch the single tier mongo instance on `AWS`.
 These types of resources are supported:
 `EC2 instance`
 
-![MongoDB on Packer EC2 Instances](images/Mongo-Packer.png)
+![MongoDB on Packer EC2 Instances](https://github.com/everest-engineering/terraform-aws-mongodb-packer/blob/master/images/Mongo-Packer.png?raw=true)
 
 ### Tech
 
@@ -108,6 +108,6 @@ Browse through the
 
 ## Authors
 
-[![Everest Banner](images/banner.png)](https://everest.engineering)
+[![Everest Banner](https://github.com/everest-engineering/terraform-aws-mongodb-packer/blob/master/images/banner.png?raw=true)](https://everest.engineering)
 
 [![License: EverestEngineering](https://img.shields.io/badge/Copyright%20%C2%A9-EVERESTENGINEERING-blue)](https://everest.engineering)
